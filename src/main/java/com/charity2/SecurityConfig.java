@@ -23,8 +23,20 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/demo/hello-2").permitAll() // Allow public access /// et hasrole("admin","user")
-                        .anyRequest().authenticated() // Protect all other routes
+                        // ✅ Swagger autorisé sans authentification
+                        .requestMatchers(
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**",
+                                "/swagger-ui.html",
+                                "/webjars/**"
+                        ).permitAll()
+                        // ✅ Autoriser certaines routes sans authentification
+                        .requestMatchers(
+                                "/api/v1/demo/hello-2",
+                                "/user"
+                        ).permitAll()
+                        // 🔐 Protéger toutes les autres routes
+                        .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())) // Use JWT authentication

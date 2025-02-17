@@ -1,4 +1,4 @@
-package com.charity2.entities.Abdallah;
+package com.charity2.entities;
 
 public enum Type_sponsoring {
     MATERIEL, FINANCIERE;

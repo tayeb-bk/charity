@@ -1,4 +1,4 @@
-package com.charity2.entities.Abdallah;
+package com.charity2.entities;
 
 import jakarta.persistence.*;
 import lombok.*;

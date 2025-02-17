@@ -1,4 +1,4 @@
-package com.charity2.entities.Abdallah;
+package com.charity2.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -21,12 +21,10 @@ public class Sponsoring {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idSponsoring;
 private int project_id;
-@ManyToOne
-private Project project;
 private Date date_signature;
 private float montant_approuvee;
 private String contrat ;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy="sponsorings", cascade = CascadeType.ALL)
     private Set<Project> projects;
 }

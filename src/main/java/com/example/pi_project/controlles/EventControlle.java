@@ -3,6 +3,7 @@ package com.example.pi_project.controlles;
 import com.example.pi_project.entities.Event;
 import com.example.pi_project.services.IEventService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,32 +12,33 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/Event")
 public class EventControlle {
-    IEventService iEventService;
+    @Autowired
+    private IEventService ieventService;
 
     @GetMapping("/getEvents")
 
     public List<Event> retrieveAllEvents() {
-        return iEventService.getAllEvent();
+        return ieventService.getAllEvent();
     }
 
     @PostMapping("/addEvent")
     public Event addEvent(@RequestBody Event f) {
-        return iEventService.addEvent(f);
+        return ieventService.addEvent(f);
     }
 
     @PutMapping("/updateEvent")
     public Event updateEvent(@RequestBody Event f) {
-        return iEventService.updateEvent(f);
+        return ieventService.updateEvent(f);
     }
 
     @GetMapping("/getEventById/{idEvent}")
     public Event retrieveEvent(@PathVariable long idEvent) {
-        return iEventService.getEventById(idEvent);
+        return ieventService.getEventById(idEvent);
     }
 
     @DeleteMapping("/getDeleteEventById/{idEvent}")
     public void removeEvent(@PathVariable long idEvent) {
-        iEventService.deleteEvent(idEvent);
+        ieventService.deleteEvent(idEvent);
     }
 
 }

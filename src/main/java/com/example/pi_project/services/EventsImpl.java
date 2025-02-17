@@ -2,13 +2,15 @@ package com.example.pi_project.services;
 
 import com.example.pi_project.entities.Event;
 import com.example.pi_project.repositories.EventRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class EventsImpl implements IEventService{
-    EventRepository eventRepository;
+    @Autowired
+    private EventRepository eventRepository;
 
     @Override
     public List<Event> getAllEvent() {

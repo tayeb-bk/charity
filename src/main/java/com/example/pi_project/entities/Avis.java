@@ -17,7 +17,5 @@ public class Avis {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idColis;
-
     private String conttinue;
-
 }

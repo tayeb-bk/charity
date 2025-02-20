@@ -9,8 +9,11 @@ import java.util.Set;
 @Entity
 @Data
 @AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
 @Builder
+@ToString
 public class Project {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)

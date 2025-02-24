@@ -2,21 +2,21 @@ package com.charity2.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
-
-import java.sql.Date;
 
 @Entity
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
+@Data
+@Builder
 @ToString
-@FieldDefaults(level = AccessLevel.PRIVATE)
-public class Donation {
+public class Avis {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
+    private String contenue;
 
-
+    @ManyToOne
+    Event event;
 }

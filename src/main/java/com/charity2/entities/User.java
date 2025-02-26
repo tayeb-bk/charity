@@ -1,5 +1,6 @@
 package com.charity2.entities;
 
+import com.charity2.chat.Chat;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -7,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -14,11 +16,15 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Entity
 @Table(name = "users")
 @EntityListeners(AuditingEntityListener.class)
-public class User implements UserDetails {
+@NamedQuery(name = UserConstants.FIND_USER_BY_EMAIL, query="SELECT u FROM User u WHERE u.email = : email")
+@NamedQuery(name = UserConstants.FIND_ALL_USERS_EXCEPT_SELF,
+              query = "SELECT u FROM  User u WHERE u.id != :publicId")
+@NamedQuery(name = UserConstants.FIND_USER_BY_PUBLIC_ID,
+               query = "SELECT u FROM  User u WHERE u.id = :publicId")
+public class User extends BaseAuditing implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,6 +41,36 @@ public class User implements UserDetails {
 
     private String image;
     private String passwordResetToken;
+
+
+
+    private LocalDateTime lastSeen;
+
+
+
+    @OneToMany(mappedBy = "sender")
+    private List<Chat> chatsAsSender;
+    @OneToMany(mappedBy = "recipient")
+    private List<Chat> chatsAsRecipient;
+    private static final int LAST_ACTIVATE_INTERVAL =5;
+
+    @Transient
+    public boolean isUsreOnline(){
+        //lastSeen=10:05
+        //now 10:09-->online
+        //now 10:12-->offline
+        return lastSeen != null && lastSeen.isAfter(LocalDateTime.now().minusMinutes(LAST_ACTIVATE_INTERVAL));
+    }
+
+
+
+
+
+
+
+
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

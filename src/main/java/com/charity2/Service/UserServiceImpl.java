@@ -2,46 +2,30 @@ package com.charity2.Service;
 
 
 import com.charity2.Repository.UserRepository;
+import com.charity2.UserMapper;
 import com.charity2.entities.User;
 import lombok.AllArgsConstructor;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl  {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
-
-    @Override
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<UserResponse> getAllUsersExceptSelf(Authentication connectedUser) {
+        return userRepository.findAllUsersExceptSelf(connectedUser.getName())
+                .stream()
+                .map(userMapper::toUserResponse)
+                .toList();
     }
 
-    @Override
-    public Optional<User> getUserById(Long id) {
-        return userRepository.findById(id);
-    }
-
-    @Override
-    public User saveUser(User user) {
-        return userRepository.save(user);
-    }
-
-    @Override
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
-    }
-
-    @Override
-    public User updateUser(User user) {
-        return userRepository.save(user);
-    }
 }

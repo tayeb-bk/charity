@@ -5,6 +5,34 @@ spring:
         jwt:
           issuer-uri: http://localhost:8080/realms/charity
 
+  datasource:
+    url: jdbc:postgresql://localhost:5432/charity
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+
+  jpa:
+    database: postgresql  # Correction : Il faut que cette propriété soit dans "jpa", pas "datasource"
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  servlet:
+    multipart:
+      max-file-size: 50MB
+
+  springdoc:  # Correction : "spring.springdoc" -> "springdoc"
+    default-produces-media-type: application/json
+
+  flyway:
+    enabled: false  # Désactive complètement Flyway
+
 server:
   port: 8020
 
@@ -13,3 +41,13 @@ jwt:
     concerter:
       resource-id: tayeb-rest-api
       principle-attribute: preferred_username
+
+logging:
+  level:
+    org.flywaydb.core: DEBUG
+    org.springframework.security: DEBUG
+
+application:
+  file:
+    uploads:
+      media-output-path: ./uploads

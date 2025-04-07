@@ -17,6 +17,11 @@ public class Avis {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String contenue;
+    private String categories;
+    private String tags;
+    private float sentimentScore;
+    private String sentenceSentiments;
+
 
     @ManyToOne
     Event event;

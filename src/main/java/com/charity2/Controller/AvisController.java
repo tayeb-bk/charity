@@ -1,23 +1,24 @@
 package com.charity2.Controller;
+
 import com.charity2.Service.AvisService;
+import com.charity2.dto.AvisRequest;
 import com.charity2.entities.Avis;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/avis")
 public class AvisController {
+
     @Autowired
     private AvisService avisService;
 
     @PostMapping("/add-avis")
-
-    public Avis createAvis(@RequestBody Avis avis) {
-        return avisService.createAvis(avis);
+    public Avis createAvis(@RequestBody AvisRequest avisRequest) {
+        return avisService.createAvis(avisRequest);
     }
 
     @GetMapping("/get-avis")
@@ -35,20 +36,30 @@ public class AvisController {
             return ResponseEntity.notFound().build();
         }
     }
+
     @PutMapping("/put-avis/{id}")
-    public ResponseEntity<Avis> updateAvis(@PathVariable Long id, @RequestBody Avis avisDetails) {
+    public ResponseEntity<Avis> updateAvis(@PathVariable Long id, @RequestBody AvisRequest avisDetails) {
         Optional<Avis> optionalAvis = avisService.getAvisById(id);
 
         if (optionalAvis.isPresent()) {
             Avis existingAvis = optionalAvis.get();
 
-            if (avisDetails.getContenue() != null && !avisDetails.getContenue().isEmpty()) {
-                existingAvis.setContenue(avisDetails.getContenue());
+            if (avisDetails.getContent() != null && !avisDetails.getContent().isEmpty()) { // Corrected to getContent()
+                existingAvis.setContenue(avisDetails.getContent()); // Corrected to setContent()
             }
 
-            if (avisDetails.getEvent() != null) {
-                existingAvis.setEvent(avisDetails.getEvent());
+            if (avisDetails.getCategories() != null) {
+                existingAvis.setCategories(avisDetails.getCategories());
             }
+
+            if (avisDetails.getTags() != null) {
+                existingAvis.setTags(avisDetails.getTags());
+            }
+
+            // Assuming you have a way to update the event in AvisService
+            // if (avisDetails.getEvent() != null) {
+            //     existingAvis.setEvent(avisDetails.getEvent());
+            // }
 
             Avis updatedAvis = avisService.updateAvis(existingAvis);
             return ResponseEntity.ok(updatedAvis);
@@ -65,5 +76,15 @@ public class AvisController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/categories/{category}")
+    public List<Avis> getAvisByCategory(@PathVariable String category) {
+        return avisService.getAvisByCategory(category);
+    }
+
+    @GetMapping("/tags/{tag}")
+    public List<Avis> getAvisByTag(@PathVariable String tag) {
+        return avisService.getAvisByTag(tag);
     }
 }

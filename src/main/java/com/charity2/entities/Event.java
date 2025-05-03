@@ -25,7 +25,8 @@ public class Event {
     private String status;
     private int associationId;
     private int capacity;
-
+    @Enumerated(EnumType.STRING) // Specify how the enum is stored in the database
+    private EventCategory categories; // Changed to enum type
     @OneToMany(cascade = CascadeType.ALL, mappedBy="event")
     private Set<Avis> Aviss;
 }

@@ -1,0 +1,92 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-12">
+      <div class="form-container">
+        <h3 class="text-center mb-4">Make a Donation</h3>
+
+        <form [formGroup]="donationForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="nom" class="form-label">👤Nom</label>
+            <input type="text" class="form-control" id="nom" formControlName="nom" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="prenom" class="form-label">👥Prénom</label>
+            <input type="text" class="form-control" id="prenom" formControlName="prenom" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="adresse" class="form-label">📍Adresse</label>
+            <input type="text" class="form-control" id="adresse" formControlName="adresse" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="numero" class="form-label">📞Numéro de téléphone</label>
+            <input type="tel" class="form-control" id="numero" formControlName="numero" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label">📝Description du don</label>
+            <textarea class="form-control" id="description" formControlName="description" rows="3" required></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="dateDonation" class="form-label">📅Date du don</label>
+            <input type="date" class="form-control" id="dateDonation" formControlName="dateDonation" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">🎁Type de donation</label>
+            <select class="form-select" id="typeDonation" formControlName="typeDonation" (change)="onTypeChange()">
+              <option value="SERVICES">Services</option>
+              <option value="MATERIEL">Matériel</option>
+              <option value="MONETAIRE">Monétaire</option>
+            </select>
+          </div>
+
+          <div *ngIf="showPaymentMethod" class="mb-3">
+            <label class="form-label">Moyen de paiement</label>
+            <select class="form-select" formControlName="moyenPaiement">
+              <option value="CARTE_BANCAIRE">💳Carte Bancaire</option>
+              <option value="VIREMENT">🏦Virement</option>
+              <option value="ESPECES">💸Espèces</option>
+              <option value="PAYPAL">🌐PayPal</option>
+            </select>
+          </div>
+
+          <div *ngIf="showAmountSection" class="mb-3">
+            <label class="form-label">Montant du don</label>
+            <div class="row">
+              <div class="col-6 mb-2">
+                <input type="radio" formControlName="amount" value="10"> $10
+              </div>
+              <div class="col-6 mb-2">
+                <input type="radio" formControlName="amount" value="20"> $20
+              </div>
+              <div class="col-6 mb-2">
+                <input type="radio" formControlName="amount" value="50"> $50
+              </div>
+              <div class="col-6 mb-2">
+                <input type="radio" formControlName="amount" value="100"> $100
+              </div>
+              <div class="col-12">
+                <input type="number" class="form-control" placeholder="Autre montant" formControlName="amount">
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="showEtatSection" class="mb-3">
+            <label class="form-label">État du don</label>
+            <select class="form-select" formControlName="etat">
+              <option value="NEUF">Neuf</option>
+              <option value="BON_ETAT">Bon état</option>
+              <option value="USE">Usé</option>
+            </select>
+          </div>
+
+          <button type="submit"class="btn btn-primary w-100 mt-3">➕Soumettre le don</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

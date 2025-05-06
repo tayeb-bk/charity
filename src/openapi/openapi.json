@@ -1,0 +1,555 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8090/api/v1",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/updateCompagneCollecte/{id}": {
+      "put": {
+        "tags": [
+          "mohamed-controller"
+        ],
+        "operationId": "updateCompagneCollecte",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompagneCollecte"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompagneCollecte"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/saveDonation": {
+      "put": {
+        "tags": [
+          "mohamed-controller"
+        ],
+        "operationId": "saveDonation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Donation"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Donation"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/saveCompagneCollecte": {
+      "put": {
+        "tags": [
+          "mohamed-controller"
+        ],
+        "operationId": "saveCompagneCollecte",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompagneCollecte"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompagneCollecte"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/saveCommenter": {
+      "put": {
+        "tags": [
+          "mohamed-controller"
+        ],
+        "operationId": "saveCommenter",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Commenter"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Commenter"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ajouterDonation": {
+      "post": {
+        "tags": [
+          "mohamed-controller"
+        ],
+        "operationId": "ajouterDonnation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Donation"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Donation"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ajouterCompagneCollecte": {
+      "post": {
+        "tags": [
+          "mohamed-controller"
+        ],
+        "operationId": "ajouterCompagneCollecte",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompagneCollecte"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompagneCollecte"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ajouterCommenter": {
+      "post": {
+        "tags": [
+          "mohamed-controller"
+        ],
+        "operationId": "ajouterCommenter",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Commenter"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Commenter"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getDonationById{id}": {
+      "get": {
+        "tags": [
+          "mohamed-controller"
+        ],
+        "operationId": "getDonationById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Donation"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getCompagneCollecteById{id}": {
+      "get": {
+        "tags": [
+          "mohamed-controller"
+        ],
+        "operationId": "getCompagneCollecteById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompagneCollecte"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getAllDonation": {
+      "get": {
+        "tags": [
+          "mohamed-controller"
+        ],
+        "operationId": "getAllDonation",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Donation"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getAllCompagneCollecte": {
+      "get": {
+        "tags": [
+          "mohamed-controller"
+        ],
+        "operationId": "getAllCompagneCollecte",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CompagneCollecte"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getAllCommenters": {
+      "get": {
+        "tags": [
+          "mohamed-controller"
+        ],
+        "operationId": "getAllCommenters",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Commenter"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deleteDonation{id}": {
+      "delete": {
+        "tags": [
+          "mohamed-controller"
+        ],
+        "operationId": "deleteDonation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/deleteCompagneCollecte{id}": {
+      "delete": {
+        "tags": [
+          "mohamed-controller"
+        ],
+        "operationId": "deleteCompagneCollecte",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/deleteCommenter/{id}": {
+      "delete": {
+        "tags": [
+          "mohamed-controller"
+        ],
+        "operationId": "deleteCommenter",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CompagneCollecte": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "titre": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "objectif": {
+            "type": "number",
+            "format": "float"
+          },
+          "montantCollecte": {
+            "type": "number",
+            "format": "float"
+          },
+          "dateDebut": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dateFin": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "moyenPaiement": {
+            "type": "string",
+            "enum": [
+              "CARTE_BANCAIRE",
+              "VIREMENT",
+              "ESPECES",
+              "PAYPAL"
+            ]
+          }
+        }
+      },
+      "Donation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nom": {
+            "type": "string"
+          },
+          "prenom": {
+            "type": "string"
+          },
+          "adresse": {
+            "type": "string"
+          },
+          "numero": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "moyenPaiement": {
+            "type": "string",
+            "enum": [
+              "CARTE_BANCAIRE",
+              "VIREMENT",
+              "ESPECES",
+              "PAYPAL"
+            ]
+          },
+          "typeDonation": {
+            "type": "string",
+            "enum": [
+              "MATERIEL",
+              "MONETAIRE",
+              "SERVICES"
+            ]
+          },
+          "etat": {
+            "type": "string",
+            "enum": [
+              "NEUF",
+              "BON_ETAT",
+              "USE"
+            ]
+          },
+          "amount": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "Commenter": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "contenu": {
+            "type": "string"
+          },
+          "dateCommentaire": {
+            "type": "string",
+            "format": "date"
+          },
+          "compagneCollecte": {
+            "$ref": "#/components/schemas/CompagneCollecte"
+          }
+        }
+      }
+    }
+  }
+}

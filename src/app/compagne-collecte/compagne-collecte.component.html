@@ -1,0 +1,86 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">🚀Ajouter une Compagne de Collecte</h2>
+
+  <form [formGroup]="compagneForm" (ngSubmit)="onSubmit()">
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th><label for="titre" class="form-label">📢Titre</label></th>
+          <td>
+            <input type="text" id="titre" class="form-control" formControlName="titre" placeholder="Entrez le titre" />
+            <div *ngIf="compagneForm.get('titre')?.invalid && compagneForm.get('titre')?.touched" class="text-danger">
+              Le titre est requis.
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th><label for="description" class="form-label">📝Description</label></th>
+          <td>
+            <textarea id="description" class="form-control" formControlName="description" placeholder="Entrez une description"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <th><label for="dateDebut" class="form-label">📅Date de début</label></th>
+          <td>
+            <input type="date" id="dateDebut" class="form-control" formControlName="dateDebut" />
+          </td>
+        </tr>
+        <tr>
+          <th><label for="dateFin" class="form-label">📅Date de fin</label></th>
+          <td>
+            <input type="date" id="dateFin" class="form-control" formControlName="dateFin" />
+          </td>
+        </tr>
+        <tr>
+          <th><label for="objectif" class="form-label">🎯Objectif (en €)</label></th>
+          <td>
+            <input type="number" id="objectif" class="form-control" formControlName="objectif" />
+          </td>
+        </tr>
+
+
+        <tr>
+          <th><label for="montantCollecte" class="form-label">💰montantCollecte (en €)</label></th>
+          <td>
+            <input type="number" id="objectif" class="form-control" formControlName="montantCollecte" />
+          </td>
+        </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <tr>
+          <th><label for="moyenPaiement" class="form-label">Moyen de paiement</label></th>
+          <td>
+            <select id="moyenPaiement" class="form-select" formControlName="moyenPaiement">
+              <option value="CARTE_BANCAIRE">Carte Bancaire</option>
+              <option value="VIREMENT">Virement</option>
+              <option value="ESPECES">Espèces</option>
+              <option value="PAYPAL">PayPal</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="text-center mt-3">
+      <button type="submit" class="btn btn-primary" [disabled]="compagneForm.invalid">Ajouter</button>
+    </div>
+  </form>
+</div>

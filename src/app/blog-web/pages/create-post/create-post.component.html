@@ -1,0 +1,59 @@
+<mat-card class="center-card">
+  <mat-card-content>
+    <div>
+      <form [formGroup]="postForm">
+        <!-- Name Field -->
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" placeholder="Enter post name">
+        </mat-form-field>
+
+        <!-- Img Field -->
+        <mat-form-field appearance="fill">
+          <mat-label>Img</mat-label>
+          <input matInput formControlName="img" placeholder="Enter image URL">
+        </mat-form-field>
+
+        <!-- Content Field -->
+        <mat-form-field appearance="fill">
+          <mat-label>Content</mat-label>
+          <textarea matInput rows="5" formControlName="content" placeholder="Enter post content"></textarea>
+        </mat-form-field>
+
+        <!-- Posted By Field -->
+        <mat-form-field appearance="fill">
+          <mat-label>Posted By</mat-label>
+          <input matInput formControlName="postedBy" placeholder="Enter author name">
+        </mat-form-field>
+
+        <!-- Tags Field -->
+        <mat-form-field appearance="fill">
+          <mat-label>Tags</mat-label>
+          <mat-chip-grid #chipGrid aria-label="Enter tags">
+            <mat-chip-row *ngFor="let tag of tags; let i = index" (removed)="remove(tag)">
+              {{tag}}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+            <input placeholder="New Tag..."
+                   [matChipInputFor]="chipGrid"
+                   (matChipInputTokenEnd)="add($event)" />
+          </mat-chip-grid>
+        </mat-form-field>
+
+        <!-- Submit Button -->
+        <form [formGroup]="postForm" (ngSubmit)="createPost()"> 
+          <!-- form fields here -->
+          <button type="submit" [disabled]="isSubmitting" >Create New Post</button>
+        </form>
+
+
+        <!-- Error Message -->
+        <mat-error *ngIf="errorMessage">
+          {{ errorMessage }}
+        </mat-error>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>

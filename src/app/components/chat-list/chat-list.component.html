@@ -1,0 +1,103 @@
+<div class="sticky-top bg-white">
+  <div class="d-flex justify-content-between align-items-center gap-2 p-2">
+    <h4>Chat</h4>
+    <i *ngIf="!searchNewContact" class="fas fa-comment-medical cursor-pointer" (click)="searchContact()"></i>
+    <i *ngIf="searchNewContact" class="fas fa-times-circle cursor-pointer" (click)="searchNewContact = false"></i>
+  </div>
+
+  <div class="d-flex flex-column gap-2">
+    <div class="input-group">
+      <span class="input-group-text">
+        <i class="fas fa-search"></i>
+      </span>
+      <input type="text" class="form-control-sm" placeholder="Search in the chat" aria-label="Search">
+    </div>
+
+    <div class="d-flex gap-2">
+      <span class="badge rounded-pill text-bg-light cursor-pointer">All</span>
+      <span class="badge rounded-pill text-bg-light cursor-pointer">Unread</span>
+      <span class="badge rounded-pill text-bg-light cursor-pointer">Favorite</span>
+    </div>
+  </div>
+</div>
+
+<div class="chat-list mt-3">
+  <ng-container *ngIf="chats.length && !searchNewContact; else noChatsFound">
+    <ng-container *ngFor="let chat of chats; trackBy: trackChat">
+      <div class="d-flex align-items-center justify-content-between border-bottom-gray p-2" (click)="chatClicked(chat)">
+        <div class="d-flex gap-2">
+          <div class="user-img">
+            <img src="assets/images/user.png" alt="User Image">
+          </div>
+          <div class="d-flex flex-column">
+            <span>{{ chat.name }}</span>
+            <small class="text-secondary">
+              <ng-container *ngIf="chat.lastmessage === 'Attachment'">
+                <i class="fas fa-image"></i>
+              </ng-container>
+              {{ wrapMessage(chat.lastmessage) }}
+            </small>
+          </div>
+        </div>
+
+        <div class="d-flex flex-column align-items-end">
+          <span class="msg-date" [class.unread]="chat.unreadCount && chat.unreadCount > 0">
+            {{ chat.lastMessageTime | date:'dd.MM.yy HH:mm' }}
+          </span>
+          <ng-container *ngIf="chat.unreadCount && chat.unreadCount > 0">
+            <small class="unread-msg-badge">{{ chat.unreadCount }}</small>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+
+
+  <ng-container *ngIf="searchNewContact">
+    <ng-container *ngFor="let contact of contacts; trackBy: trackContact">
+      <div class="d-flex align-items-center justify-content-between border-bottom-gray p-2" (click)="selectContact(contact)">
+        <div class="d-flex gap-2">
+          <div class="user-img">
+            <img src="assets/images/user.png" alt="User Image">
+          </div>
+          <div class="d-flex flex-column">
+            <span>{{ contact.firstName + ' ' + contact.lastName }}</span>
+            <small class="text-secondary" *ngIf="contact.online">Online</small>
+            <small class="text-secondary" *ngIf="!contact.online">
+              Last seen&nbsp;{{ contact.lastSeen | date:'dd.MM.yyyy HH:mm' }}
+            </small>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #noChatsFound>
+    <div class="text-center mt-3" *ngIf="!searchNewContact">
+      <small class="text-muted">No chat yet...</small>
+    </div>
+  </ng-template>
+
+
+  <!-- Ajout d'un template pour afficher les contacts -->
+  <ng-template #showContacts>
+    <ng-container *ngFor="let contact of contacts; trackBy: trackContact">
+      <div class="d-flex align-items-center justify-content-between border-bottom-gray p-2" (click)="selectContact(contact)">
+        <div class="d-flex gap-2">
+          <div class="user-img">
+            <img src="assets/images/user.png" alt="User Image">
+          </div>
+          <div class="d-flex flex-column">
+            <span>{{ contact.firstName + ' ' + contact.lastName }}</span>
+            <small class="text-secondary" *ngIf="contact.online">Online</small>
+            <small class="text-secondary" *ngIf="!contact.online">
+              Last seen&nbsp;{{ contact.lastSeen | date:'dd.MM.yyyy HH:mm' }}
+            </small>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </ng-template>
+
+</div>

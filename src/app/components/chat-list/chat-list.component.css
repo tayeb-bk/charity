@@ -1,0 +1,71 @@
+.chat-list {
+  div {
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f2f1f1;
+    }
+  }
+}
+.border-bottom-gray{
+  border-bottom: solid 1px #cccccc;
+}
+
+.msg-date {
+  font-size: 0.7rem;
+
+  &.unread {
+    color: #1fa855;
+    font-weight: 500;
+  }
+}
+.unread-msg-badge {
+  background: #1fa855;
+color: #fff;
+min-width: 20px;
+height: 20px;
+border-radius: 50%;
+font-size: 0.8rem;
+font-weight: 400;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.user-img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  >img{
+    width: 100%;
+  }
+}
+
+
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ccc;
+}
+
+.gray-bg {
+  background-color: #f0f2f5;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+.icon-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

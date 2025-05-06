@@ -1,0 +1,52 @@
+<mat-card class="center-card">
+  <mat-card-content>
+    <div>
+      <h2>All Posts</h2>
+
+      <!-- Afficher le message de chargement -->
+      <div *ngIf="isLoading" class="loading-spinner">
+        <mat-spinner diameter="50"></mat-spinner>
+      </div>
+
+      <!-- Afficher un message d'erreur si nécessaire -->
+      <div *ngIf="errorMessage" class="error-message">
+        <mat-error>{{ errorMessage }}</mat-error>
+      </div>
+
+      <!-- Afficher un message si aucun post n'est disponible -->
+      <div *ngIf="!isLoading && posts.length === 0">
+        <mat-card>No posts available.</mat-card>
+      </div>
+
+      <!-- Afficher les posts -->
+      <div *ngIf="!isLoading && posts.length > 0">
+        <mat-card *ngFor="let item of posts" class="post-card">
+          <mat-card-header>
+            <mat-card-title>{{ item.name }}</mat-card-title>
+            <mat-card-subtitle>{{ item.postedBy }}</mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <p>{{ item.content }}</p>
+
+            <!-- Affichage des tags -->
+            <mat-chip-grid *ngIf="item.tags && item.tags.length" aria-label="Post Tags">
+              <mat-chip-row *ngFor="let tag of item.tags">
+                {{ tag }}
+              </mat-chip-row>
+            </mat-chip-grid>
+
+            <!-- Affichage de l'image du post -->
+            <div *ngIf="item.img">
+              <img [src]="item.img" alt="Post Image" class="post-image" />
+            </div>
+          </mat-card-content>
+
+          <mat-card-actions>
+            <!-- Actions optionnelles comme Editer ou Supprimer -->
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
